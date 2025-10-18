@@ -55,6 +55,19 @@
 .formulario-reclamaciones {
     padding: 4rem 0;
     background: var(--blanco-roto);
+    animation: fadeInUp 1s ease;
+}
+
+/*Animacion fade-in y slide-up*/
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .formulario-container {
