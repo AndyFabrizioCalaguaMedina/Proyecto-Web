@@ -80,6 +80,7 @@
     font-size: 1rem;
     transition: all 0.3s ease;
     font-family: 'Poppins', sans-serif;
+    
 }
 
 .form-group input:focus,
@@ -120,59 +121,86 @@
 
 /* ========== INFORMACIÓN CONTACTO ========== */
 
-.informacion-contacto {
+.preguntas-frecuentes {
     background: white;
     padding: 2.5rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin-top: 0;
+    margin-bottom: 0;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUpFaq 1s ease forwards;
 }
 
-.informacion-contacto h2 {
+/* Animacion fadein y slideUp para Preguntas Frecuentes */
+@keyframes fadeInUpFaq {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.preguntas-frecuentes h2 {
     color: var(--marron-madera);
     margin-bottom: 2rem;
     font-family: 'Quicksand', sans-serif;
     font-size: 1.8rem;
+    text-align: left;
 }
 
-.contacto-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+.faq-item {
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid #f0f0f0;
 }
 
-.contacto-item:last-child {
+.faq-item:last-child {
     border-bottom: none;
     margin-bottom: 0;
 }
 
-.contacto-icono {
-    background: var(--marron-madera);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.contacto-icono i {
-    font-size: 1.2rem;
-}
-
-.contacto-info h3 {
-    color: var(--marron-madera);
+.faq-item h3 {
+    color: var(--negro);
     margin-bottom: 0.5rem;
     font-family: 'Quicksand', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
 }
 
-.contacto-info p {
+.faq-item p {
     color: var(--gris-oscuro);
     line-height: 1.6;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.faq-item:hover {
+    background: #f9f6f2;
+    box-shadow: 0 4px 16px rgba(121,85,72,0.07);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.preguntas-frecuentes .faq-item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: faqFadeInUp 0.7s ease forwards;
+}
+.preguntas-frecuentes .faq-item:nth-child(1) { animation-delay: 0.1s; }
+.preguntas-frecuentes .faq-item:nth-child(2) { animation-delay: 0.2s; }
+.preguntas-frecuentes .faq-item:nth-child(3) { animation-delay: 0.3s; }
+.preguntas-frecuentes .faq-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Animacion fade-in y slide-up al cargar */
+@keyframes faqFadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ========== MAPA ========== */
@@ -200,10 +228,12 @@
 
 /* ========== EMERGENCIAS ========== */
 .emergencias {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    background: transparent; /* Elimina el fondo expansivo */
     color: white;
     padding: 3rem 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .emergencia-content {
@@ -211,8 +241,13 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
+    background: linear-gradient(135deg, #880a06 0%, #c23003 100%);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(121,85,72,0.07);
+    padding: 2rem 2.5rem;
+    color: white;
 }
 
 .emergencia-icono {
@@ -264,7 +299,7 @@
 
 @media screen and (max-width: 600px) {
     .formulario-contacto,
-    .informacion-contacto {
+    .preguntas-frecuentes {
         padding: 1.5rem;
     }
     
