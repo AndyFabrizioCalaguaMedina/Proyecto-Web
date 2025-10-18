@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Hogar de Huellitas</title>
+    <link rel="icon" href="https://svgsilh.com/png-1024/306277.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body>
+    <header class="info">
+        <p>🕑 Atencion Lun - Vie 08:00 - 18:00</p>
+        <p>📱 Llamanos +51 989 105 530 ● Disponible 24h</p>
+    </header>
+
+    <header class="eslogan">
+        <div class="eslogan-content">
+            <h1>Hogar de Huellitas</h1>
+            <p>Son parte de tu familia, trátalos como tales</p>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://cdn-icons-png.freepik.com/512/35/35097.png" alt="Logo Hogar de Huellitas">
+                <span>Hogar de Huellitas</span>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="donacion.html">Donaciones</a></li>
+                <li><a href="adopcion.html">Adopciones</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+                <li><a href="reclamaciones.html">Reclamaciones</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Banner de Contacto -->
+    <section class="contacto-hero">
+        <div class="container">
+            <h1>Contáctanos</h1>
+            <p>Estamos aquí para ayudarte. No dudes en escribirnos o visitarnos.</p>
+        </div>
+    </section>
+
+    <!-- Sección Principal de Contacto -->
+    <section class="contacto-principal">
+        <div class="container">
+            <div class="contacto-grid">
+                <!-- Formulario de Contacto -->
+                <div class="formulario-contacto">
+                    <h2>Envíanos un Mensaje</h2>
+                    <form class="formulario" id="formularioContacto">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo *</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="asunto">Asunto *</label>
+                            <select id="asunto" name="asunto" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="adopcion">Información sobre Adopción</option>
+                                <option value="donacion">Información sobre Donaciones</option>
+                                <option value="voluntariado">Voluntariado</option>
+                                <option value="reclamo">Reclamo o Sugerencia</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje *</label>
+                            <textarea id="mensaje" name="mensaje" rows="6" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-enviar">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="informacion-contacto">
+                    <h2>Información de Contacto</h2>
+                    
+                    <div class="contacto-item">
+                        <div class="contacto-icono">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contacto-info">
+                            <h3>Dirección</h3>
+                            <p>Av. Los Animales 123<br>Lima 15088, Perú</p>
+                        </div>
+                    </div>
+
+                    <div class="contacto-item">
+                        <div class="contacto-icono">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contacto-info">
+                            <h3>Teléfonos</h3>
+                            <p>+51 989 105 530<br>+51 1 234 5678</p>
+                        </div>
+                    </div>
+
+                    <div class="contacto-item">
+                        <div class="contacto-icono">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contacto-info">
+                            <h3>Email</h3>
+                            <p>info@hogardehuellitas.org<br></p>
+                        </div>
+                    </div>
+
+                    <div class="contacto-item">
+                        <div class="contacto-icono">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contacto-info">
+                            <h3>Horario de Atención</h3>
+                            <p>Lunes a Viernes: 8:00 - 18:00<br>
+                               Sábados: 9:00 - 14:00<br>
+                               <strong>Emergencias: 24/7</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Emergencias -->
+    <section class="emergencias">
+        <div class="container">
+            <div class="emergencia-content">
+                <div class="emergencia-icono">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="emergencia-info">
+                    <h2>¿Emergencia Animal?</h2>
+                    <p>Si encuentras un animal en situación de emergencia, no dudes en contactarnos inmediatamente.</p>
+                    <div class="emergencia-telefono">
+                        <i class="fas fa-phone"></i>
+                        <span>+51 989 105 530</span>
+                    </div>
+                    <p class="emergencia-nota">Disponible las 24 horas, los 7 días de la semana</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa Full Width -->
+    <section class="mapa-full">
+        <div class="mapa-container">
+            <div class="mapa-header">
+                <h2>Visítanos en Nuestro Refugio</h2>
+                <p>Estamos ubicados en Av. Los Animales 123, Lima. ¡Te esperamos!</p>
+            </div>
+            <div class="mapa-iframe">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.949646836576!2d-77.04245672477662!3d-12.046965940687297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c5f619ee3ec7%3A0x14206cb9cc452b4a!2sLima%2C%20Peru!5e0!3m2!1sen!2sus!4v1690000000000!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+      
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hogar de Huellitas</h3>
+                    <p>Rescatando, rehabilitando y encontrando hogares para animales necesitados desde 2015.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Los Animales 123, Lima, Perú</p>
+                    <p><i class="fas fa-phone"></i> +51 989 105 530</p>
+                    <p><i class="fas fa-envelope"></i> info@hogardehuellitas.org</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Horario de Atención</h4>
+                    <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 - 18:00</p>
+                    <p><i class="fas fa-clock"></i> Sábados: 9:00 - 14:00</p>
+                    <p><i class="fas fa-exclamation-circle"></i> Emergencias: 24/7</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Hogar de Huellitas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/contacto.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
