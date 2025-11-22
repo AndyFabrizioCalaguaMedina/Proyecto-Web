@@ -133,15 +133,15 @@ const mascotas = [
     {
         id: 11,
         nombre: "CHISPA",
-        especie: "Cuy",
+        especie: "Perro",
         edad: "2 años",
-        genero: "other",
+        genero: "female",
         imagen: "https://www.shutterstock.com/image-photo/funny-guinea-pig-smiling-on-600nw-2314991407.jpg",
-        descripcion: "Hembra, 2 años. Cobaya (cuy) amigable y curiosa. Muy buena para entornos pequeños y cuidados fáciles.",
+        descripcion: "Hembra, 2 años. Amigable y curiosa. Muy buena para entornos pequeños y cuidados fáciles.",
         salud: "Saludable",
         temperamento: "Amigable y curiosa",
         necesidades: "Cuidados básicos",
-        contacto: "Área de pequeños - Sector K"
+        contacto: "Área de perros - Sector K"
     },
     {
         id: 12,
@@ -503,12 +503,15 @@ function generarCatalogo(mascotasFiltradas = obtenerMascotas()) {
                         <i class="fas fa-star"></i>
                     </button>
                     <button class="btn primary" onclick="mostrarFormularioAdopcion(${mascota.id})">Adoptar</button>
+                    
                     <button class="btn ghost" onclick="mostrarDetalles(${mascota.id})">Detalles</button>
                 </div>
             </div>
         </article>
         `;
     }).join('');
+
+
 
     // Actualizar contador
     document.getElementById('contador').textContent = mascotasFiltradas.length;
@@ -631,6 +634,63 @@ function mostrarDetalles(mascotaId) {
 
     modal.style.display = 'block';
 }
+// toggleFavorito (versión sencilla que usa localStorage y SweetAlert2)
+function toggleFavorito(id) {
+    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    const mascota = mascotas.find(m => m.id === id);
+
+    const esFavorito = favoritos.includes(id);
+
+    if (esFavorito) {
+        // Quitar
+        const index = favoritos.indexOf(id);
+        favoritos.splice(index, 1);
+        localStorage.setItem("favoritos", JSON.stringify(favoritos));
+
+        Swal.fire({
+            toast: true,
+            position: "top-end",
+            icon: "info",
+            title: `${mascota.nombre} eliminado de favoritos`,
+            showConfirmButton: false,
+            timer: 1500
+        });
+    } else {
+        // Agregar
+        favoritos.push(id);
+        localStorage.setItem("favoritos", JSON.stringify(favoritos));
+
+        Swal.fire({
+            toast: true,
+            position: "top-end",
+            icon: "success",
+            title: `${mascota.nombre} agregado a favoritos`,
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+
+    // <-- Aquí estaba mostrarMascotas(); lo corregimos a generarCatalogo()
+    generarCatalogo();
+}
+
+// darLike (usa tu función guardarLike y luego refresca con generarCatalogo)
+function darLike(id) {
+    const nuevoCount = guardarLike(id);
+
+    Swal.fire({
+        toast: true,
+        position: "bottom-end",
+        icon: "success",
+        title: `Has dado like. Total: ${nuevoCount}`,
+        showConfirmButton: false,
+        timer: 1200
+    });
+
+    // refrescar el catálogo para mostrar el nuevo conteo
+    generarCatalogo();
+}
+
 
 function mostrarFormularioAdopcion(mascotaId) {
     const mascotasData = obtenerMascotas();
@@ -800,7 +860,7 @@ function actualizarEstadisticas() {
     const totalAdopciones = obtenerTotalAdopciones();
     const totalFavoritos = obtenerFavoritos().length;
     
-    console.log(`📊 Estadísticas - Adopciones: ${totalAdopciones}, Favoritos: ${totalFavoritos}`);
+    console.log(` Estadísticas - Adopciones: ${totalAdopciones}, Favoritos: ${totalFavoritos}`);
 }
 
 // ===== UTILIDADES =====
@@ -828,7 +888,7 @@ function cerrarModal(modalId) {
 
 // ===== INICIALIZACIÓN =====
 function inicializarApp() {
-    console.log("🚀 Iniciando aplicación...");
+    console.log(" Iniciando aplicación...");
     inicializarLocalStorage();
     
     // Agregar filtro de favoritos
