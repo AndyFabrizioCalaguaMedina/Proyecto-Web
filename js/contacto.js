@@ -15,8 +15,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.parentElement.classList.remove('focused');
                 }
             });
+            
+            // Guardar en localStorage al cambiar cualquier campo
+            const saveHandler = () => saveFormToLocalStorage(formulario);
+            input.addEventListener('input', saveHandler);
+            input.addEventListener('change', saveHandler);
         });
 
+        // Cargar datos desde localStorage al iniciar
+        loadFormFromLocalStorage(formulario);
         formulario.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -105,6 +112,11 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             mostrarMensajeExito();
             formulario.reset();
+            // Limpiar lo guardado
+            clearFormLocalStorage();
+            // Quitar clase focused de los grupos
+            const grupos = formulario.querySelectorAll('.form-group');
+            grupos.forEach(g => g.classList.remove('focused'));
             
             // Restaurar botón
             setTimeout(() => {
@@ -179,4 +191,50 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
+
+    // ---- Local Storage utilities ----
+    function saveFormToLocalStorage(form) {
+        if (!window.localStorage) return;
+        try {
+            const data = {};
+            const fields = form.querySelectorAll('input, select, textarea');
+            fields.forEach(f => {
+                if (f.name) data[f.name] = f.value;
+            });
+            localStorage.setItem('contactoForm', JSON.stringify(data));
+        } catch (err) {
+            console.warn('No se pudo guardar en localStorage:', err);
+        }
+    }
+
+    function loadFormFromLocalStorage(form) {
+        if (!window.localStorage) return;
+        try {
+            const raw = localStorage.getItem('contactoForm');
+            if (!raw) return;
+            const data = JSON.parse(raw);
+            Object.keys(data).forEach(name => {
+                const el = form.querySelector('[name="' + name + '"]');
+                if (el) {
+                    el.value = data[name];
+                    // añadir clase focused cuando hay valor
+                    if (data[name] !== '') {
+                        const parent = el.parentElement;
+                        if (parent) parent.classList.add('focused');
+                    }
+                }
+            });
+        } catch (err) {
+            console.warn('No se pudo leer localStorage:', err);
+        }
+    }
+
+    function clearFormLocalStorage() {
+        if (!window.localStorage) return;
+        try {
+            localStorage.removeItem('contactoForm');
+        } catch (err) {
+            console.warn('No se pudo limpiar localStorage:', err);
+        }
+    }
 });
