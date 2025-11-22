@@ -13,35 +13,35 @@ function escribirContador(n) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     escribirContador(leerContador());
 
-   
+
     const botonesSumar = document.querySelectorAll(".btn.primary");
     botonesSumar.forEach(boton => {
         boton.addEventListener("click", () => {
             let valor = leerContador();
-            valor++;        
+            valor++;
             escribirContador(valor);
 
-          
+
             const card = boton.closest(".card");
             if (card) card.classList.add("selected");
         });
     });
 
-    
+
     const botonesQuitar = document.querySelectorAll(".btn.remove");
     botonesQuitar.forEach(boton => {
         boton.addEventListener("click", () => {
             let valor = leerContador();
 
             if (valor > 0) {
-                valor--;    
+                valor--;
                 escribirContador(valor);
             }
 
-        
+
             const card = boton.closest(".card");
             if (card) card.classList.remove("selected");
         });
