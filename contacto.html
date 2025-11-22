@@ -12,12 +12,13 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/contacto.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <header class="info">
         <p>🕑 Atencion Lun - Vie 08:00 - 18:00</p>
-        <p>📱 Llamanos +51 989 105 530 ● Disponible 24h</p>
+        <button id="btnLoginLogout" class="btn-login">Login</button>
     </header>
 
     <header class="eslogan">
@@ -170,6 +171,17 @@
         </div>
     </section>
 
+    <!-- Modal de Login -->
+    <div id="modalLogin" class="modal-login">
+        <div class="modal-content-login">
+            <h3>Iniciar Sesión</h3>
+            <input type="text" id="userLogin" placeholder="Usuario">
+            <input type="password" id="passLogin" placeholder="Contraseña">
+            <button id="btnIngresar">Ingresar</button>
+            <button id="btnCerrarLogin" class="cerrar">Cerrar</button>
+            <p id="loginError" style="color:red; display:none;">Credenciales incorrectas</p>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -178,9 +190,12 @@
                     <h3>Hogar de Huellitas</h3>
                     <p>Rescatando, rehabilitando y encontrando hogares desde 2015.</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/HuellitasSM/?locale=es_LA" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/huellitaspucp/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/UCZAxwSiULdtMCVd-4FSqtUQ" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/HuellitasSM/?locale=es_LA" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/huellitaspucp/" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCZAxwSiULdtMCVd-4FSqtUQ" target="_blank"><i
+                                class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">

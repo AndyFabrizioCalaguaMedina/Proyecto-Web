@@ -1,5 +1,126 @@
-// Manejo del formulario de reclamaciones
-document.addEventListener('DOMContentLoaded', function() {
+// --- SWEETALERT AL ENVIAR Y LIMPIAR FORMULARIO DE RECLAMACIONES ---
+document.addEventListener('DOMContentLoaded', function () {
+    const formulario = document.getElementById('formularioReclamaciones');
+    if (formulario) {
+        formulario.addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Recopilar datos principales del formulario
+            const tipoDocumento = document.getElementById('tipo-documento').value;
+            const numeroDocumento = document.getElementById('numero-documento').value;
+            const nombres = document.getElementById('nombres').value;
+            const apellidos = document.getElementById('apellidos').value;
+            const email = document.getElementById('email').value;
+            const telefono = document.getElementById('telefono').value;
+            const direccion = document.getElementById('direccion').value;
+            const tipoReclamo = document.getElementById('tipo-reclamo').value;
+            const fechaIncidente = document.getElementById('fecha-incidente').value;
+            const detalles = document.getElementById('detalles').value;
+            const pedido = document.getElementById('pedido').value;
+
+            Swal.fire({
+                icon: 'success',
+                title: '¡Reclamación enviada!',
+                html: `
+                    <div style="text-align:left;max-width:400px;margin:0 auto;">
+                        <b>Tipo de Documento:</b> ${tipoDocumento}<br>
+                        <b>Número de Documento:</b> ${numeroDocumento}<br>
+                        <b>Nombre:</b> ${nombres} ${apellidos}<br>
+                        <b>Email:</b> ${email}<br>
+                        <b>Teléfono:</b> ${telefono}<br>
+                        <b>Dirección:</b> ${direccion || '-'}<br>
+                        <b>Tipo de Reclamo:</b> ${tipoReclamo}<br>
+                        <b>Fecha del Incidente:</b> ${fechaIncidente}<br>
+                        <b>Detalles:</b> ${detalles}<br>
+                        <b>Pedido:</b> ${pedido}
+                    </div>
+                `,
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'swal2-card-popup'
+                }
+            }).then(() => {
+                formulario.reset();
+                // Actualizar contador de caracteres si existe
+                const charCount = document.getElementById('char-count');
+                if (charCount) charCount.textContent = '0';
+            });
+        });
+    }
+
+    // --- SWEETALERT CONFIRMACIÓN AL LIMPIAR FORMULARIO ---
+    const btnLimpiar = document.getElementById('btnLimpiar');
+    if (btnLimpiar && formulario) {
+        btnLimpiar.addEventListener('click', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Se borrarán todos los datos ingresados en el formulario.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, limpiar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formulario.reset();
+                    // Actualizar contador de caracteres si existe
+                    const charCount = document.getElementById('char-count');
+                    if (charCount) charCount.textContent = '0';
+                    Swal.fire(
+                        'Formulario limpio',
+                        'Todos los campos han sido borrados.',
+                        'success'
+                    );
+                }
+            });
+        });
+    }
+});
+// Mostrar información detallada de las tarjetas info-reclamaciones con SweetAlert2
+document.addEventListener('DOMContentLoaded', function () {
+    const infoCards = document.querySelectorAll('.info-card[data-info]');
+    if (infoCards.length) {
+        infoCards.forEach(card => {
+            card.addEventListener('click', function () {
+                mostrarInfoReclamo(Number(card.getAttribute('data-info')));
+            });
+        });
+    }
+});
+
+function mostrarInfoReclamo(idx) {
+    const data = [
+        {
+            icon: '<i class="fas fa-shield-alt fa-3x" style="color:#795548;"></i>',
+            title: 'Protegemos tus Derechos',
+            text: 'Todas las reclamaciones son tratadas con confidencialidad y seguimos los protocolos establecidos.'
+        },
+        {
+            icon: '<i class="fas fa-clock fa-3x" style="color:#795548;"></i>',
+            title: 'Respuesta Rápida',
+            text: 'Nos comprometemos a responder tu reclamación en un plazo máximo de 15 días hábiles.'
+        },
+        {
+            icon: '<i class="fas fa-hand-holding-heart fa-3x" style="color:#795548;"></i>',
+            title: 'Compromiso con la Calidad',
+            text: 'Tus comentarios nos ayudan a mejorar nuestros servicios y atención hacia los animales.'
+        }
+    ];
+    const card = data[idx];
+    Swal.fire({
+        title: `<div style='margin-bottom:1rem;'>${card.icon}</div>${card.title}`,
+        html: `<div style='font-size:1.1rem; color:#4e342e;'>${card.text}</div>`,
+        confirmButtonText: 'Cerrar',
+        background: '#fffbe9',
+        customClass: {
+            title: 'swal2-title',
+            popup: 'swal2-card-popup'
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
     const formulario = document.getElementById('formularioReclamaciones');
     const btnLimpiar = document.getElementById('btnLimpiar');
     const textareaDetalles = document.getElementById('detalles');
@@ -9,10 +130,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Contador de caracteres
     if (textareaDetalles && charCount) {
-        textareaDetalles.addEventListener('input', function() {
+        textareaDetalles.addEventListener('input', function () {
             const length = this.value.length;
             charCount.textContent = length;
-            
+
             if (length > 1000) {
                 charCount.style.color = '#dc3545';
             } else if (length > 800) {
@@ -25,20 +146,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Manejo de archivos
     if (fileInput && fileInfo) {
-        fileInput.addEventListener('change', function() {
+        fileInput.addEventListener('change', function () {
             const files = this.files;
             if (files.length > 0) {
                 let fileNames = [];
                 let totalSize = 0;
-                
+
                 for (let file of files) {
                     fileNames.push(file.name);
                     totalSize += file.size;
                 }
-                
+
                 const totalSizeMB = (totalSize / (1024 * 1024)).toFixed(2);
                 fileInfo.textContent = `${files.length} archivo(s) seleccionado(s) - ${totalSizeMB} MB`;
-                
+
                 // Validar tamaño total
                 if (totalSize > 10 * 1024 * 1024) {
                     fileInfo.style.color = '#dc3545';
@@ -52,26 +173,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // Botón limpiar formulario
-    if (btnLimpiar) {
-        btnLimpiar.addEventListener('click', function() {
-            if (confirm('¿Estás seguro de que deseas limpiar todo el formulario? Se perderán todos los datos ingresados.')) {
-                formulario.reset();
-                if (charCount) charCount.textContent = '0';
-                if (fileInfo) {
-                    fileInfo.textContent = 'No se han seleccionado archivos';
-                    fileInfo.style.color = '#6c757d';
-                }
-            }
-        });
-    }
-
     // Validación y envío del formulario
     if (formulario) {
-        formulario.addEventListener('submit', function(e) {
+        formulario.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             if (validarFormularioReclamaciones()) {
                 enviarReclamacion();
             }
@@ -80,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function validarFormularioReclamaciones() {
         let isValid = true;
-        
+
         // Validar campos obligatorios
         const camposObligatorios = [
             'tipo-documento', 'numero-documento', 'nombres', 'apellidos',
@@ -92,9 +198,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const elemento = document.getElementById(campo);
             if (elemento) {
                 const valor = elemento.type === 'checkbox' ? elemento.checked : elemento.value.trim();
-                
+
                 limpiarError(elemento);
-                
+
                 if (!valor) {
                     mostrarError(elemento, 'Este campo es obligatorio');
                     isValid = false;
@@ -119,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function mostrarError(elemento, mensaje) {
         elemento.style.borderColor = '#dc3545';
         elemento.style.background = '#fff5f5';
-        
+
         const errorMensaje = document.createElement('div');
         errorMensaje.className = 'error-mensaje';
         errorMensaje.style.cssText = `
@@ -135,14 +241,14 @@ document.addEventListener('DOMContentLoaded', function() {
             <i class="fas fa-exclamation-circle"></i>
             ${mensaje}
         `;
-        
+
         elemento.parentNode.appendChild(errorMensaje);
     }
 
     function limpiarError(elemento) {
         elemento.style.borderColor = '#e9ecef';
         elemento.style.background = '#f8f9fa';
-        
+
         const errorExistente = elemento.parentNode.querySelector('.error-mensaje');
         if (errorExistente) {
             errorExistente.remove();
@@ -152,25 +258,26 @@ document.addEventListener('DOMContentLoaded', function() {
     function enviarReclamacion() {
         const btnEnviar = document.querySelector('.btn-enviar-reclamo');
         const textoOriginal = btnEnviar.innerHTML;
-        
+        guardarReclamoStorage();
+
         // Animación de envío
         btnEnviar.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando Reclamación...';
         btnEnviar.disabled = true;
-        
+
         // Simular envío al servidor
         setTimeout(() => {
             // Generar número de ticket
             const ticketNumber = 'TKT-' + Date.now().toString().slice(-6);
-            
+
             mostrarMensajeExito(ticketNumber);
             formulario.reset();
-            
+
             // Restaurar botón
             setTimeout(() => {
                 btnEnviar.innerHTML = textoOriginal;
                 btnEnviar.disabled = false;
             }, 2000);
-            
+
         }, 3000);
     }
 
@@ -202,9 +309,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <strong>Guarda tu número de ticket para cualquier consulta.</strong>
             </p>
         `;
-        
+
         formulario.parentNode.insertBefore(mensajeExito, formulario.nextSibling);
-        
+
         // Remover mensaje después de 8 segundos
         setTimeout(() => {
             mensajeExito.style.animation = 'slideOutDown 0.5s ease-in';
@@ -243,3 +350,86 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 });
+
+// GUARDAR DATOS DEL RECLAMO EN LOCALSTORAGE
+function guardarReclamoStorage() {
+    const reclamo = {
+        nombre: document.getElementById("nombres").value,
+        apellido: document.getElementById("apellidos").value,
+        tipo: document.getElementById("tipo-reclamo").value,
+        detalles: document.getElementById("detalles").value,
+        fecha: new Date().toLocaleString()
+    };
+
+    let lista = JSON.parse(localStorage.getItem("reclamos")) || [];
+    lista.push(reclamo);
+    localStorage.setItem("reclamos", JSON.stringify(lista));
+}
+
+// Mostrar botón solo si es admin
+if (localStorage.getItem("usuario") === "admin") {
+    document.getElementById("btnListaReclamos").style.display = "inline-block";
+}
+
+// Abrir lista de reclamos en PDF
+document.getElementById("btnListaReclamos").addEventListener("click", () => {
+    const reclamos = JSON.parse(localStorage.getItem("reclamos")) || [];
+
+    let html = `
+            <h1>LISTA DE RECLAMACIONES</h1>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <tr><th>Nombre</th><th>Apellido</th><th>Tipo</th><th>Mensaje</th><th>Fecha</th></tr>
+        `;
+
+    reclamos.forEach(r => {
+        html += `
+                <tr>
+                    <td>${r.nombre}</td>
+                    <td>${r.apellido}</td>
+                    <td>${r.tipo}</td>
+                    <td>${r.detalles}</td>
+                    <td>${r.fecha}</td>
+                </tr>
+            `;
+    });
+
+    html += "</table>";
+
+    const win = window.open("", "_blank");
+    win.document.write(html);
+    win.print();
+});
+
+if (localStorage.getItem("usuario") === "admin") {
+    document.getElementById("btnListaReclamos").style.display = "inline-block";
+    document.getElementById("btnEliminarReclamos").style.display = "inline-block";
+}
+
+document.getElementById("btnEliminarReclamos").addEventListener("click", eliminarTodasReclamaciones);
+function eliminarTodasReclamaciones() {
+    if (confirm("¿Seguro que deseas eliminar TODAS las reclamaciones? Esta acción no se puede deshacer.")) {
+        localStorage.removeItem("reclamos");
+        alert("Todas las reclamaciones han sido eliminadas.");
+    }
+}
+
+/* ===========================================================
+   CONTROL DE BOTONES SOLO PARA ADMIN EN RECLAMACIONES.HTML
+   =========================================================== */
+
+window.addEventListener("DOMContentLoaded", () => {
+    const usuario = localStorage.getItem("usuario");
+
+    // Botones solo para admin
+    const btnLista = document.getElementById("btnListaReclamos");
+    const btnEliminar = document.getElementById("btnEliminarReclamaciones");
+
+    if (btnLista && btnEliminar) {
+        if (usuario !== "admin") {
+            btnLista.style.display = "none";
+            btnEliminar.style.display = "none";
+        }
+    }
+});
+
+

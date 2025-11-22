@@ -22,7 +22,7 @@
 <body>
     <header class="info">
         <p>🕐 Atención Lun - Vie 08:00 - 18:00</p>
-        <p>📱 Llámanos +51 989 105 530 ● Disponible 24h</p>
+        <button id="btnLoginLogout" class="btn-login">Login</button>
     </header>
 
     <header class="eslogan">
@@ -99,6 +99,17 @@
 
     </main>
 
+    <!-- Modal de Login -->
+    <div id="modalLogin" class="modal-login">
+        <div class="modal-content-login">
+            <h3>Iniciar Sesión</h3>
+            <input type="text" id="userLogin" placeholder="Usuario">
+            <input type="password" id="passLogin" placeholder="Contraseña">
+            <button id="btnIngresar">Ingresar</button>
+            <button id="btnCerrarLogin" class="cerrar">Cerrar</button>
+            <p id="loginError" style="color:red; display:none;">Credenciales incorrectas</p>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">

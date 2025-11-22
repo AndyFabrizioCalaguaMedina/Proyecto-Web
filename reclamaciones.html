@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reclamaciones - Hogar de Huellitas</title>
     <link rel="icon" href="https://svgsilh.com/png-1024/306277.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/reclamaciones.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
     <header class="info">
         <p>🕑 Atencion Lun - Vie 08:00 - 18:00</p>
-        <p>📱 Llamanos +51 989 105 530 ● Disponible 24h</p>
+        <button id="btnLoginLogout" class="btn-login">Login</button>
     </header>
 
     <header class="eslogan">
@@ -56,26 +61,23 @@
     <section class="info-reclamaciones">
         <div class="container">
             <div class="info-grid">
-                <div class="info-card">
+                <div class="info-card" data-info="0">
                     <div class="info-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Protegemos tus Derechos</h3>
-                    <p>Todas las reclamaciones son tratadas con confidencialidad y seguimos los protocolos establecidos.</p>
                 </div>
-                <div class="info-card">
+                <div class="info-card" data-info="1">
                     <div class="info-icon">
                         <i class="fas fa-clock"></i>
                     </div>
                     <h3>Respuesta Rápida</h3>
-                    <p>Nos comprometemos a responder tu reclamación en un plazo máximo de 15 días hábiles.</p>
                 </div>
-                <div class="info-card">
+                <div class="info-card" data-info="2">
                     <div class="info-icon">
                         <i class="fas fa-hand-holding-heart"></i>
                     </div>
                     <h3>Compromiso con la Calidad</h3>
-                    <p>Tus comentarios nos ayudan a mejorar nuestros servicios y atención hacia los animales.</p>
                 </div>
             </div>
         </div>
@@ -84,6 +86,11 @@
     <!-- Formulario de Reclamaciones -->
     <section class="formulario-reclamaciones">
         <div class="container">
+            <div style="display: flex; justify-content: center;">
+                <button id="btnListaReclamos" class="btn-lista-reclamos">Lista de Reclamaciones</button>
+                <button id="btnEliminarReclamos">Eliminar todas las reclamaciones</button>
+
+            </div>
             <div class="formulario-container">
                 <div class="form-header">
                     <h2>Formulario de Reclamación</h2>
@@ -132,14 +139,15 @@
                         </div>
                         <div class="form-group">
                             <label for="direccion">Dirección Completa</label>
-                            <input type="text" id="direccion" name="direccion" placeholder="Calle, número, distrito, ciudad">
+                            <input type="text" id="direccion" name="direccion"
+                                placeholder="Calle, número, distrito, ciudad">
                         </div>
                     </div>
 
                     <!-- Detalles de la Reclamación -->
                     <div class="form-section">
                         <h3><i class="fas fa-exclamation-circle"></i> Detalles de la Reclamación</h3>
-                        
+
                         <div class="form-group">
                             <label for="tipo-reclamo">Tipo de Reclamación *</label>
                             <select id="tipo-reclamo" name="tipo-reclamo" required>
@@ -162,7 +170,8 @@
 
                         <div class="form-group">
                             <label for="detalles">Detalles de la Reclamación *</label>
-                            <textarea id="detalles" name="detalles" rows="6" required placeholder="Describe detalladamente lo sucedido, incluyendo nombres de personas involucradas, horarios y cualquier información relevante..."></textarea>
+                            <textarea id="detalles" name="detalles" rows="6" required
+                                placeholder="Describe detalladamente lo sucedido, incluyendo nombres de personas involucradas, horarios y cualquier información relevante..."></textarea>
                             <div class="char-count">
                                 <span id="char-count">0</span> / 1000 caracteres
                             </div>
@@ -170,39 +179,45 @@
 
                         <div class="form-group">
                             <label for="pedido">¿Qué solución esperas? *</label>
-                            <textarea id="pedido" name="pedido" rows="4" required placeholder="Describe claramente qué esperas que hagamos para resolver tu reclamación..."></textarea>
+                            <textarea id="pedido" name="pedido" rows="4" required
+                                placeholder="Describe claramente qué esperas que hagamos para resolver tu reclamación..."></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="archivos">Archivos Adjuntos (Opcional)</label>
                             <div class="file-upload">
-                                <input type="file" id="archivos" name="archivos" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                                <input type="file" id="archivos" name="archivos" multiple
+                                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
                                 <label for="archivos" class="file-label">
                                     <i class="fas fa-cloud-upload-alt"></i>
                                     <span>Seleccionar archivos</span>
                                 </label>
                                 <div class="file-info" id="file-info">No se han seleccionado archivos</div>
                             </div>
-                            <small>Puedes adjuntar fotos, documentos o cualquier evidencia (máximo 5 archivos, 10MB total)</small>
+                            <small>Puedes adjuntar fotos, documentos o cualquier evidencia (máximo 5 archivos, 10MB
+                                total)</small>
                         </div>
                     </div>
 
                     <!-- Consentimiento -->
                     <div class="form-section">
                         <h3><i class="fas fa-check-circle"></i> Consentimiento y Envío</h3>
-                        
+
                         <div class="consentimiento">
                             <div class="checkbox-group">
                                 <input type="checkbox" id="consentimiento" name="consentimiento" required>
                                 <label for="consentimiento">
-                                    Declaro bajo juramento que la información proporcionada es verídica y autorizo el tratamiento de mis datos personales para el seguimiento de esta reclamación, de acuerdo con la Ley de Protección de Datos Personales.
+                                    Declaro bajo juramento que la información proporcionada es verídica y autorizo el
+                                    tratamiento de mis datos personales para el seguimiento de esta reclamación, de
+                                    acuerdo con la Ley de Protección de Datos Personales.
                                 </label>
                             </div>
-                            
+
                             <div class="checkbox-group">
                                 <input type="checkbox" id="notificaciones" name="notificaciones">
                                 <label for="notificaciones">
-                                    Autorizo ser contactado(a) por correo electrónico o teléfono para el seguimiento de mi reclamación.
+                                    Autorizo ser contactado(a) por correo electrónico o teléfono para el seguimiento de
+                                    mi reclamación.
                                 </label>
                             </div>
                         </div>
@@ -223,6 +238,17 @@
         </div>
     </section>
 
+    <!-- Modal de Login -->
+    <div id="modalLogin" class="modal-login">
+        <div class="modal-content-login">
+            <h3>Iniciar Sesión</h3>
+            <input type="text" id="userLogin" placeholder="Usuario">
+            <input type="password" id="passLogin" placeholder="Contraseña">
+            <button id="btnIngresar">Ingresar</button>
+            <button id="btnCerrarLogin" class="cerrar">Cerrar</button>
+            <p id="loginError" style="color:red; display:none;">Credenciales incorrectas</p>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -231,9 +257,12 @@
                     <h3>Hogar de Huellitas</h3>
                     <p>Rescatando, rehabilitando y encontrando hogares desde 2015.</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/HuellitasSM/?locale=es_LA" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/huellitaspucp/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/UCZAxwSiULdtMCVd-4FSqtUQ" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/HuellitasSM/?locale=es_LA" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/huellitaspucp/" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCZAxwSiULdtMCVd-4FSqtUQ" target="_blank"><i
+                                class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -258,4 +287,5 @@
     <script src="js/reclamaciones.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>

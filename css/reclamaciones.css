@@ -277,6 +277,70 @@
     box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
 }
 
+.admin-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* BOTÓN: Lista de Reclamaciones */
+.btn-lista-reclamos {
+    background: #2b7cff;
+    color: #fff;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+    box-shadow: 0 4px 10px rgba(43, 124, 255, 0.25);
+    display: none;
+}
+
+.btn-lista-reclamos:hover {
+    background: #1e63d6;
+    box-shadow: 0 6px 14px rgba(43, 124, 255, 0.35);
+    transform: translateY(-2px);
+}
+
+.btn-lista-reclamos:active {
+    transform: translateY(0);
+}
+
+/* BOTÓN: Eliminar todas las reclamaciones */
+#btnEliminarReclamos {
+    background: #e63946;
+    color: #fff;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.25);
+    display: none;
+
+}
+
+#btnEliminarReclamos:hover {
+    background: #c52834;
+    box-shadow: 0 6px 14px rgba(230, 57, 70, 0.35);
+    transform: translateY(-2px);
+}
+
+#btnEliminarReclamos:active {
+    transform: translateY(0);
+}
+
+.admin-only {
+    display: none;
+}
+
+
+
 /* ========== RESPONSIVE RECLAMACIONES ========== */
 @media screen and (max-width: 1200px) {
     .reclamaciones-hero h1 {

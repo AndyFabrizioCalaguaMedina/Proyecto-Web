@@ -15,8 +15,12 @@
 
 <body>
     <header class="info">
-        <p>🕐 Atención Lun - Vie 08:00 - 18:00</p>
-        <p>📱 Llámanos +51 989 105 530 ● Disponible 24h</p>
+        <div class="info-left">
+            <p>🕐 Atención Lun - Vie 08:00 - 18:00</p>
+        </div>
+        <div class="info-right">
+            <button id="btnLoginLogout" class="btn-login">Login</button>
+        </div>
     </header>
 
     <header class="eslogan">
@@ -29,26 +33,26 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="images/logo.png" alt="Logo Hogar de Huellita">
+                <img src="images/logo.png" alt="Logo Hogar de Huellitas">
                 <span>Hogar de Huellitas</span>
             </div>
+            <ul class="nav-links">
+                <li><a href="index.html" title="Volver a la página principal">Inicio</a></li>
+                <li><a href="donaciones.html" title="Conoce cómo puedes ayudar donando">Donaciones</a></li>
+                <li><a href="adopciones.html" title="Adopta una mascota y cambia una vida">Adopciones</a></li>
+                <li><a href="contacto.html" title="Contáctanos para más información">Contacto</a></li>
+                <li><a href="reclamaciones.html" title="Envía tus sugerencias o reclamos">Reclamaciones</a></li>
+            </ul>
             <div class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="donaciones.html">Donaciones</a></li>
-                <li><a href="adopciones.html">Adopciones</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="reclamaciones.html">Reclamaciones</a></li>
-            </ul>
         </div>
     </nav>
 
     <!-- Banner -->
-    <section class="barra_donacion">
+    <section class="barra_donacion fade-in">
         <div class="donacion-content">
             <h2>¡Ayúdanos a buscarles un hogar!</h2>
             <p>Defendemos los derechos de los animales, con justicia, compasión y respeto.</p>
@@ -61,28 +65,23 @@
         <h2>Nuestro Centro de Adopción</h2>
         <div class="carrusel-container">
             <div class="carrusel-slide active">
-                <img src="images/Cuy-Carrusel.avif"
-                    alt="Centro de adopción">
+                <img src="images/Cuy-Carrusel.avif" alt="Centro de adopción">
                 <div class="carrusel-text">Instalaciones cómodas y seguras</div>
             </div>
             <div class="carrusel-slide">
-                <img src="images/perro1-Carrusel.avif"
-                    alt="Perro en adopción">
+                <img src="images/perro1-Carrusel.avif" alt="Perro en adopción">
                 <div class="carrusel-text">Nuestros amigos esperando una familia</div>
             </div>
             <div class="carrusel-slide">
-                <img src="images/gato-carrusel.avif"
-                    alt="Gato en adopción">
+                <img src="images/gato-carrusel.avif" alt="Gato en adopción">
                 <div class="carrusel-text">También tenemos gatitos buscando hogar</div>
             </div>
             <div class="carrusel-slide">
-                <img src="images/perro2-carrusel.avif" 
-                    alt="Voluntarios">
+                <img src="images/perro2-carrusel.avif" alt="Voluntarios">
                 <div class="carrusel-text">Nuestro equipo de voluntarios</div>
             </div>
             <div class="carrusel-slide">
-                <img src="images/gato2-carrusel.avif" 
-                    alt="Voluntarios">
+                <img src="images/gato2-carrusel.avif" alt="Voluntarios">
                 <div class="carrusel-text">Salva vidas con nosotros</div>
             </div>
             <button class="carrusel-btn prev">&#10094;</button>
@@ -174,7 +173,20 @@
             </div>
         </div>
     </section>
+    <!--Modal de Login-->
+    <div id="modalLogin" class="modal-login">
+        <div class="modal-content-login">
+            <h3>Iniciar Sesión</h3>
 
+            <input type="text" id="userLogin" placeholder="Usuario">
+            <input type="password" id="passLogin" placeholder="Contraseña">
+
+            <button id="btnIngresar">Ingresar</button>
+            <button id="btnCerrarLogin" class="cerrar">Cerrar</button>
+
+            <p id="loginError" style="color:red; display:none;">Credenciales incorrectas</p>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -183,9 +195,12 @@
                     <h3>Hogar de Huellitas</h3>
                     <p>Rescatando, rehabilitando y encontrando hogares desde 2015.</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/HuellitasSM/?locale=es_LA" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/huellitaspucp/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/UCZAxwSiULdtMCVd-4FSqtUQ" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/HuellitasSM/?locale=es_LA" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/huellitaspucp/" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCZAxwSiULdtMCVd-4FSqtUQ" target="_blank"><i
+                                class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
