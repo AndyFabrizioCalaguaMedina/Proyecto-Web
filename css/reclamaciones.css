@@ -335,11 +335,6 @@
     transform: translateY(0);
 }
 
-.admin-only {
-    display: none;
-}
-
-
 
 /* ========== RESPONSIVE RECLAMACIONES ========== */
 @media screen and (max-width: 1200px) {

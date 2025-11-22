@@ -69,7 +69,7 @@ const btnIngresar = document.getElementById("btnIngresar");
 if (btnLoginLogout) {
     btnLoginLogout.addEventListener("click", () => {
 
-        // Si ya inició sesión → esto será CERRAR SESIÓN
+        // Si ya se inició sesión  esto sera CERRAR SESIÓN
         const usuario = localStorage.getItem("usuario");
 
         if (usuario) {
@@ -108,7 +108,7 @@ if (btnIngresar) {
     });
 }
 
-// --- CAMBIAR BOTÓN LOGIN ↔ LOGOUT ---
+// --- CAMBIAR BOTÓN LOGIN LOGOUT ---
 window.addEventListener("load", () => {
     const usuario = localStorage.getItem("usuario");
 
@@ -117,6 +117,8 @@ window.addEventListener("load", () => {
         btnLoginLogout.style.background = "#c0392b";
     }
 });
+
+
 
 
 

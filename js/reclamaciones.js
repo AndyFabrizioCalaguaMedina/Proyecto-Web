@@ -366,11 +366,6 @@ function guardarReclamoStorage() {
     localStorage.setItem("reclamos", JSON.stringify(lista));
 }
 
-// Mostrar botón solo si es admin
-if (localStorage.getItem("usuario") === "admin") {
-    document.getElementById("btnListaReclamos").style.display = "inline-block";
-}
-
 // Abrir lista de reclamos en PDF
 document.getElementById("btnListaReclamos").addEventListener("click", () => {
     const reclamos = JSON.parse(localStorage.getItem("reclamos")) || [];
@@ -400,12 +395,10 @@ document.getElementById("btnListaReclamos").addEventListener("click", () => {
     win.print();
 });
 
-if (localStorage.getItem("usuario") === "admin") {
-    document.getElementById("btnListaReclamos").style.display = "inline-block";
-    document.getElementById("btnEliminarReclamos").style.display = "inline-block";
-}
+
 
 document.getElementById("btnEliminarReclamos").addEventListener("click", eliminarTodasReclamaciones);
+
 function eliminarTodasReclamaciones() {
     if (confirm("¿Seguro que deseas eliminar TODAS las reclamaciones? Esta acción no se puede deshacer.")) {
         localStorage.removeItem("reclamos");
@@ -413,23 +406,5 @@ function eliminarTodasReclamaciones() {
     }
 }
 
-/* ===========================================================
-   CONTROL DE BOTONES SOLO PARA ADMIN EN RECLAMACIONES.HTML
-   =========================================================== */
-
-window.addEventListener("DOMContentLoaded", () => {
-    const usuario = localStorage.getItem("usuario");
-
-    // Botones solo para admin
-    const btnLista = document.getElementById("btnListaReclamos");
-    const btnEliminar = document.getElementById("btnEliminarReclamaciones");
-
-    if (btnLista && btnEliminar) {
-        if (usuario !== "admin") {
-            btnLista.style.display = "none";
-            btnEliminar.style.display = "none";
-        }
-    }
-});
 
 
