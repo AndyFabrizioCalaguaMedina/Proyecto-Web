@@ -30,7 +30,7 @@
     gap: 25px;
     justify-items: center;
     background: rgba(255, 255, 255, 0.8);
-    animation: list-animation 3s ; 
+    animation: list-animation 3s ;
 
 }
 
@@ -45,7 +45,7 @@
     background: white;
     display: flex;
     flex-direction: column;
-   
+
 }
 
 .card:hover {
@@ -243,44 +243,66 @@
 
 
 @keyframes list-animation{
-  0% {
-  opacity: 0;
-  -webkit-transform: scale3d(.3, .3, .3);
-  transform: translateX(100%);
-  }
-  20% {
-  -webkit-transform: scale3d(1.1, 1.1, 1.1);
-  transform: scale3d(1.1, 1.1, 1.1);
-  }
-  40% {
-  -webkit-transform: scale3d(.9, .9, .9);
-  transform: scale3d(.9, .9, .9);
-  }
-  60% {
-  opacity: 1;
-  -webkit-transform: scale3d(1.03, 1.03, 1.03);
-  transform: scale3d(1.03, 1.03, 1.03);
-  }
-  80% {
-  -webkit-transform: scale3d(.97, .97, .97);
-  transform: scale3d(.97, .97, .97);
-  }
-  100% {
-  opacity: 1;
-  transform: translateX(-100);
-  }
-  }
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: translateX(100%);
+    }
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9);
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-100);
+    }
+}
 .franja{
-padding: 3.5rem ;
+    padding: 3.5rem ;
     text-align: center;
     background: rgba(255, 248, 225, 0.8);
-
-
 }
-
 .franja-container {
     margin-top: 2rem;
 }
-    
+
+.card:not(.selected):hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+.card:not(.selected):hover .media img {
+    transform: scale(1.05);
+}
+
+.card.selected:hover .media img {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+}
+
+.card:not(.selected):hover .overlay {
+    opacity: 1;
+}
+
+.card.selected:hover .overlay {
+    opacity: 0;
+}
+
+
+
+
+
 
 
