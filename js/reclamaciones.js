@@ -406,5 +406,37 @@ function eliminarTodasReclamaciones() {
     }
 }
 
+// --- CONTROL DE BOTONES SOLO PARA ADMIN EN RECLAMACIONES.HTML ---
+window.addEventListener("DOMContentLoaded", () => {
+    const usuario = localStorage.getItem("usuario");
+
+    // Botones solo para admin
+    const btnLista = document.getElementById("btnListaReclamos");
+    const btnEliminar = document.getElementById("btnEliminarReclamaciones");
+
+    // Verificar si los botones existen antes de hacer la validación
+    if (btnLista && btnEliminar) {
+        if (usuario !== "admin") {
+            // Si el usuario no es admin, ocultar los botones
+            btnLista.style.display = "none";
+            btnEliminar.style.display = "none";
+        } else {
+            // Si el usuario es admin, asegurarse que los botones estén visibles
+            btnLista.style.display = "block";
+            btnEliminar.style.display = "block";
+        }
+    }
+});
+// Mostrar botón solo si es admin
+if (localStorage.getItem("usuario") === "admin") {
+    document.getElementById("btnListaReclamos").style.display = "inline-block";
+}
+
+if (localStorage.getItem("usuario") === "admin") {
+    document.getElementById("btnListaReclamos").style.display = "inline-block";
+    document.getElementById("btnEliminarReclamos").style.display = "inline-block";
+}
+
+
 
 
